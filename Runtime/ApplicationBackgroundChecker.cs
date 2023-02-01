@@ -24,13 +24,15 @@ namespace Kogane
             OnChanged?.Invoke( isBackground );
         }
 
+#if UNITY_EDITOR
         /// <summary>
         /// ゲーム起動時に呼び出されます
         /// </summary>
-        [RuntimeInitializeOnLoadMethod( RuntimeInitializeLoadType.SubsystemRegistration )]
+        [UnityEditor.InitializeOnEnterPlayMode]
         private static void RuntimeInitializeOnLoadMethodSubsystemRegistration()
         {
-            OnChanged = null;
+            OnChanged = default;
         }
+#endif
     }
 }
